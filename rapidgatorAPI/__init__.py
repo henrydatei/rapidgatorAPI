@@ -1,0 +1,1 @@
+from .rapidgator import RapidgatorAPI
