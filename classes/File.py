@@ -4,8 +4,8 @@ from typing import Optional
 
 @dataclasses.dataclass
 class File:
-    name: str
-    size: int
+    name: Optional[str] = None
+    size: Optional[int] = None
     hash: Optional[str] = None
     nb_downloads: Optional[int] = None
     file_id: Optional[str] = None

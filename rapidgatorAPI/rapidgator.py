@@ -280,7 +280,7 @@ class RapidgatorAPI():
         if r.json()["status"] != 200:
             raise from_dict(APIError, r.json())
         else:
-            return from_dict(FileUpload, r.json()["response"]["file"])
+            return from_dict(FileUpload, r.json()["response"]["upload"])
         
     def file_upload_info(self, upload_id: str) -> FileUpload:
         """Checks upload session state.
@@ -302,7 +302,7 @@ class RapidgatorAPI():
         if r.json()["status"] != 200:
             raise from_dict(APIError, r.json())
         else:
-            return from_dict(FileUpload, r.json()["response"]["file"])
+            return from_dict(FileUpload, r.json()["response"]["upload"])
         
     def file_download(self, file_id: str) -> FileDownload:
         """Download a file.
