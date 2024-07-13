@@ -218,32 +218,32 @@ class RapidgatorAPI():
         # Even if the folder is not found, the API returns a 200 status code. WTF?
         return r.json()["response"]
     
-    def folder_change_mode(self, folder_id: str, mode: int) -> Folder:
-        """Change a folder mode.
+    # def folder_change_mode(self, folder_id: str, mode: int) -> Folder:
+    #     """Change a folder mode.
 
-        Args:
-            folder_id (str): The key that identifies the folder to be changed.
-            mode (int): The new mode of the folder. Possible values: 0 - Public, 1 - Premium only, 2 - Private, 3 - Hotlink.
+    #     Args:
+    #         folder_id (str): The key that identifies the folder to be changed.
+    #         mode (int): The new mode of the folder. Possible values: 0 - Public, 1 - Premium only, 2 - Private, 3 - Hotlink.
             
-        Raises:
-            APIError: e.g. if the folder is not found
-            ValueError: e.g. if mode is invalid
+    #     Raises:
+    #         APIError: e.g. if the folder is not found
+    #         ValueError: e.g. if mode is invalid
 
-        Returns:
-            Folder: The changed folder
-        """
-        if mode not in [0, 1, 2, 3]:
-            raise ValueError("mode must be one of 0, 1, 2, 3")
-        params = {
-            "token": self.token,
-            "folder_id": folder_id,
-            "mode": mode
-        }
-        r = requests.post("https://rapidgator.net/api/v2/folder/change_mode", data=params)
-        if r.json()["status"] != 200:
-            raise Exception(r.json())
-        else:
-            return from_dict(Folder, r.json()["response"]["folder"])
+    #     Returns:
+    #         Folder: The changed folder
+    #     """
+    #     if mode not in [0, 1, 2, 3]:
+    #         raise ValueError("mode must be one of 0, 1, 2, 3")
+    #     params = {
+    #         "token": self.token,
+    #         "folder_id": folder_id,
+    #         "mode": mode
+    #     }
+    #     r = requests.post("https://rapidgator.net/api/v2/folder/change_mode", data=params)
+    #     if r.json()["status"] != 200:
+    #         raise Exception(r.json())
+    #     else:
+    #         return from_dict(Folder, r.json()["response"]["folder"])
         
     def file_upload(self, name: str, hash: str, size: int, folder_id: int = None, multipart: bool = True) -> FileUpload:
         """Checks if instant upload is possible and return upload session object with file info or upload URL.
