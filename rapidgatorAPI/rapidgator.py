@@ -137,7 +137,7 @@ class RapidgatorAPI():
         if r.json()["status"] != 200:
             raise Exception(r.json())
         else:
-            return Tuple(from_dict(Folder, r.json()["response"]["folder"]), from_dict(Pager, r.json()["response"]["pager"]))
+            return from_dict(Folder, r.json()["response"]["folder"]), from_dict(Pager, r.json()["response"]["pager"])
         
     def folder_rename(self, folder_id: str, name: str) -> Folder:
         """Rename a folder.
