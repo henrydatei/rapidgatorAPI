@@ -29,7 +29,7 @@ class RapidgatorAPI():
             params["code"] = self.two_factor_code
         r = requests.post("https://rapidgator.net/api/v2/user/login", data=params)
         if r.json()["status"] != 200:
-            return from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             self.token = r.json()["response"]["token"]
             
