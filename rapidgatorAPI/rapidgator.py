@@ -47,7 +47,7 @@ class RapidgatorAPI():
         }
         r = requests.get("https://rapidgator.net/api/v2/user/info", params=params)
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return from_dict(User, r.json()["response"]["user"])
         
@@ -72,7 +72,7 @@ class RapidgatorAPI():
             params["folder_id"] = parent_folder_id
         r = requests.post("https://rapidgator.net/api/v2/folder/create", data=params)
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return from_dict(Folder, r.json()["response"]["folder"])
         
@@ -95,7 +95,7 @@ class RapidgatorAPI():
             params["folder_id"] = folder_id
         r = requests.get("https://rapidgator.net/api/v2/folder/info", params=params)
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return from_dict(Folder, r.json()["response"]["folder"])
         
@@ -135,7 +135,7 @@ class RapidgatorAPI():
             params["sort_direction"] = sort_direction
         r = requests.get("https://rapidgator.net/api/v2/folder/content", params=params)
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return Tuple(from_dict(Folder, r.json()["response"]["folder"]), from_dict(Pager, r.json()["response"]["pager"]))
         
@@ -156,7 +156,7 @@ class RapidgatorAPI():
         }
         r = requests.post("https://rapidgator.net/api/v2/folder/rename", data=params)
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return from_dict(Folder, r.json()["response"]["folder"])
         
@@ -241,7 +241,7 @@ class RapidgatorAPI():
         }
         r = requests.post("https://rapidgator.net/api/v2/folder/change_mode", data=params)
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return from_dict(Folder, r.json()["response"]["folder"])
         
@@ -278,7 +278,7 @@ class RapidgatorAPI():
             params["multipart"] = multipart
         r = requests.post("https://rapidgator.net/api/v2/file/upload", data=params)
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return from_dict(FileUpload, r.json()["response"]["upload"])
         
@@ -300,7 +300,7 @@ class RapidgatorAPI():
         }
         r = requests.get("https://rapidgator.net/api/v2/file/upload_info", params=params)
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return from_dict(FileUpload, r.json()["response"]["upload"])
         
@@ -322,7 +322,7 @@ class RapidgatorAPI():
         }
         r = requests.get("https://rapidgator.net/api/v2/file/download", params=params)
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return from_dict(FileDownload, r.json()["response"]["file"])
         
@@ -344,7 +344,7 @@ class RapidgatorAPI():
         }
         r = requests.get("https://rapidgator.net/api/v2/file/info", params=params)
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return from_dict(File, r.json()["response"]["file"])
         
@@ -365,7 +365,7 @@ class RapidgatorAPI():
         }
         r = requests.post("https://rapidgator.net/api/v2/file/rename", data=params)
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return from_dict(File, r.json()["response"]["file"])
         
@@ -390,7 +390,7 @@ class RapidgatorAPI():
         r = requests.post("https://rapidgator.net/api/v2/file/copy", data=params)
 
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return r.json()["response"]
         
@@ -415,7 +415,7 @@ class RapidgatorAPI():
         r = requests.post("https://rapidgator.net/api/v2/file/xcopy", data=params)
 
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return from_dict(File, r.json()["response"]["file"])
         
@@ -441,7 +441,7 @@ class RapidgatorAPI():
         r = requests.post("https://rapidgator.net/api/v2/file/hashcopy", data=params)
 
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return from_dict(File, r.json()["response"]["file"])
         
@@ -506,7 +506,7 @@ class RapidgatorAPI():
         }
         r = requests.post("https://rapidgator.net/api/v2/file/change_mode", data=params)
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return from_dict(File, r.json()["response"]["file"])
         
@@ -529,7 +529,7 @@ class RapidgatorAPI():
         r = requests.get("https://rapidgator.net/api/v2/file/check_link", params=params)
 
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return [from_dict(CheckLinkResult, response) for response in r.json()["response"]]
         
@@ -558,7 +558,7 @@ class RapidgatorAPI():
         r = requests.post("https://rapidgator.net/api/v2/file/onetimelink_create", data=params)
 
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return from_dict(OneTimeLink, r.json()["response"]["link"])
         
@@ -581,7 +581,7 @@ class RapidgatorAPI():
         r = requests.get("https://rapidgator.net/api/v2/file/onetimelink_info", params=params)
 
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return [from_dict(OneTimeLink, link) for link in r.json()["response"]["links"]]
         
@@ -617,7 +617,7 @@ class RapidgatorAPI():
             params["sort_direction"] = sort_direction
         r = requests.get("https://rapidgator.net/api/v2/trashcan/content", params=params)
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return Tuple([from_dict(File, file) for file in r.json()["response"]["files"]], from_dict(Pager, r.json()["response"]["pager"]))
         
@@ -678,7 +678,7 @@ class RapidgatorAPI():
         r = requests.post("https://rapidgator.net/api/v2/remote/create", data=params)
 
         if r.json()["status"] != 200:
-            raise from_dict(APIError, r.json())
+            raise Exception(r.json())
         else:
             return [from_dict(RemoteUploadJob, job) for job in r.json()["response"]["jobs"]]
         
