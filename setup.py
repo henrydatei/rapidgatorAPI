@@ -7,7 +7,7 @@ setup(
     author='henrydatei',
     author_email='henrydatei@web.de',
     url='https://github.com/henrydatei/rapidgatorAPI',
-    packages=['rapidgatorAPI'],
+    packages=['rapidgatorAPI' , 'classes'],
     install_requires=[
         "requests",
         "dacite"
